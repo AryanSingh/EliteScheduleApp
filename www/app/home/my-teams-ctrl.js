@@ -12,5 +12,5 @@
 			eliteApi.setLeagueId(team.leagueId);
 			$state.go("app.team-detail",{id:team.id})
 		};
-	}
+	};
 })();

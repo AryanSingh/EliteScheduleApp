@@ -44,7 +44,7 @@
 
 	            
 	            vm.teamStanding = _.find(standArr,{ "teamId" : vm.teamId });
-	            vm.following = false;
+	            vm.following = myTeamsService.isFollowingTeam(vm.teamId);
 	            vm.toggleFollow = function(){
 	            	if(vm.following){
 	            		var confirmPopup = $ionicPopup.confirm({
@@ -54,10 +54,12 @@
 	            		confirmPopup.then(function(res){
 	            			if(res){
 	            				vm.following= !vm.following;
+	            				myTeamsService.unfollowTeam(vm.team);
 	            			}
 	            		})
 	            	}else{
 	            		vm.following = !vm.following;
+	            		myTeamsService.followTeam(vm.team);
 	            	}
 	             }
            })
@@ -90,15 +92,7 @@
             return game.scoreDisplay.indexOf("W:") === 0;
         }
 
-        function toggleFollow(team){
-        	if(isFollowingTeam(team)){
-        		unfollowTeam(team);
-        	}
-        	else{
-        		followTeam(team);
-        	}
-        }
-
+        
     };
 })();
 // (function(){

@@ -7,30 +7,30 @@
 
 	function myTeamsService(CacheFactory){
 		var self =this;
-		self.myTeamsCache = CacheFactory.get("myTeamsCache");
+		self.MyTeamsCache = CacheFactory.get("MyTeamsCache");
 	
 
 		function followTeam(team){
-			self.myTeamsCache.put(team.id,team);
+			self.MyTeamsCache.put(team.teamId,team);
 		}
 
 		function unfollowTeam(team){
-			self.myTeamsCache.remove(team.id.toString());
+			self.MyTeamsCache.remove(team.id.toString());
 		} 
-
+ 
 		function getFollowedTeams(){
-			var teams =[];
-			keys = self.myTeamsCache.keys();
+			var teams =[],
+			keys = self.MyTeamsCache.keys();
 
 			for(var i=0;i<keys.length;i++){
-				var team = self.myTeamsCache.get(keys[i]);
+				var team = self.MyTeamsCache.get(keys[i]);
 				teams.push(team);
-			}
+			};
 			return teams;
 		}
 
 		function isFollowingTeam(teamId){
-			var team = self.myTeamsCache.get(teamId);
+			var team = self.MyTeamsCache.get(teamId);
 			return team;
 		}
 
